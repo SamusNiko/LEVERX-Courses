@@ -1,0 +1,124 @@
+<mvc:View controllerName="my.app.controller.SecondPage" 
+	xmlns="sap.m" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:u="sap.uxap" 
+	xmlns:f="sap.f" 
+	xmlns:l="sap.ui.layout">
+	<f:DynamicPage id="dynamicPage" class="sapUiNoContentPadding" showFooter="true">
+
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:breadcrumbs>
+					<Breadcrumbs >
+						<Link press="onNavLinkPress" target="1" text="Stores list "/>
+						<Link press="onNavLinkPress" text="Store details"/>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+				<f:heading>
+					<Title text="Details" wrapping="true"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<l:HorizontalLayout allowWrapping="true">
+					<l:VerticalLayout class="sapUiMediumMarginEnd">
+						<ObjectStatus title="Email" text="{odata>Email}"/>
+						<ObjectStatus title="Phone Number" text="{odata>PhoneNumber}"/>
+						<ObjectStatus title="Address" text="{odata>Address}"/>
+					</l:VerticalLayout>
+
+					<l:VerticalLayout>
+						<ObjectStatus title="Established Date" text="{path: 'odata>Established', 
+							type: 'sap.ui.model.type.Date',
+							formatOptions: {
+									style: 'medium'
+					}}"/>
+						<ObjectStatus title="Floor Area" text="{odata>FloorArea} "/>
+					</l:VerticalLayout>
+				</l:HorizontalLayout>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<IconTabBar id="iconTabBar" select="onQuickFilter" expandable="false">
+				<items>
+					<IconTabFilter key="all" showAll="true" count="{appView>/all}" text="All"/>
+					<IconTabSeparator/>
+					<IconTabFilter key="ok" icon="sap-icon://message-success" iconColor="Positive" count="{appView>/ok}" text="Ok"/>
+					<IconTabFilter key="storage" icon="sap-icon://message-warning" iconColor="Critical" count="{appView>/storage}" text="Storage"/>
+					<IconTabFilter key="outOfStock" icon="sap-icon://message-error" iconColor="Negative" count="{appView>/outOfStock}" text="Out Of Stock"/>
+				</items>
+				<content>
+					<Table updateFinished="onTableUpdateFinished" id="productsTable" inset="false" sticky="HeaderToolbar,ColumnHeaders" items="{
+										path: 'odata>rel_Products',
+										sorter: {
+											path: 'Name'
+										}
+									}" class="sapFDynamicPageAlignContent" width="auto">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Products"/>
+								<ToolbarSpacer/>
+								<SearchField id="searchField" search="onProductSearch" width="auto">
+								</SearchField>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column width="12em">
+								<Text text="Name" />
+							</Column>
+							<Column hAlign="End">
+								<Text text="Price" />
+							</Column>
+							<Column >
+								<Text text="Specs" />
+							</Column>
+							<Column >
+								<Text text="SupplierInfo" />
+							</Column>
+							<Column>
+								<Text text="Country of origin" />
+							</Column>
+							<Column >
+								<Text text="Prod.company" />
+							</Column>
+							<Column width="100px">
+								<Text text="Rating" />
+							</Column>
+							<Column width="30px">
+							</Column>
+							<Column width="30px">
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Navigation" press="onProductItemPress">
+								<cells>
+									<ObjectIdentifier title="{odata>Name}" />
+									<ObjectNumber number="{odata>Price}" unit="USD" />
+									<Text text="{odata>Specs}" wrapping="false"/>
+									<Text text="{odata>SupplierInfo}" wrapping="false"/>
+									<Text text="{odata>MadeIn}" wrapping="false"/>
+									<Text text="{odata>ProductionCompanyName}" wrapping="false"/>
+									<RatingIndicator maxValue="5" value="{odata>Rating}" />
+									<Button icon="sap-icon://edit" type="Transparent" />
+									<Button icon="sap-icon://sys-cancel" type="Transparent" press="onDeleteProductPress"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+
+			</IconTabBar>
+
+		</f:content>
+
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://add" text="Create" press="onCreateProductPress"/>
+				<Button type="Reject" icon="sap-icon://delete" press="onDeleteStorePress" text="Delete"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

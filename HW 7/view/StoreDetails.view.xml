@@ -1,0 +1,124 @@
+<mvc:View controllerName="my.app.controller.StoreDetails" 
+	xmlns="sap.m" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:u="sap.uxap" 
+	xmlns:f="sap.f" 
+	xmlns:l="sap.ui.layout">
+	<f:DynamicPage id="dynamicPage" class="sapUiNoContentPadding" showFooter="true">
+
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:breadcrumbs>
+					<Breadcrumbs >
+						<Link press="onNavLinkPress" target="1" text="{i18n>storeList}"/>
+						<Link press="onNavLinkPress" text="{i18n>storeDetails}"/>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+				<f:heading>
+					<Title text="{i18n>storeDetails}" wrapping="true"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<l:HorizontalLayout allowWrapping="true">
+					<l:VerticalLayout class="sapUiMediumMarginEnd">
+						<ObjectStatus title="{i18n>email}" text="{odata>Email}"/>
+						<ObjectStatus title="{i18n>phoneNumber}" text="{odata>PhoneNumber}"/>
+						<ObjectStatus title="{i18n>address}" text="{odata>Address}"/>
+					</l:VerticalLayout>
+
+					<l:VerticalLayout>
+						<ObjectStatus title="{i18n>establishedDate}" text="{path: 'odata>Established', 
+							type: 'sap.ui.model.type.Date',
+							formatOptions: {
+									style: 'medium'
+					}}"/>
+						<ObjectStatus title="{i18n>floorArea}" text="{odata>FloorArea} "/>
+					</l:VerticalLayout>
+				</l:HorizontalLayout>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<IconTabBar id="iconTabBar" select="onQuickFilter" expandable="false">
+				<items>
+					<IconTabFilter key="all" showAll="true" count="{appView>/all}" text="{i18n>all}"/>
+					<IconTabSeparator/>
+					<IconTabFilter key="ok" icon="sap-icon://message-success" iconColor="Positive" count="{appView>/ok}" text="{i18n>ok}"/>
+					<IconTabFilter key="storage" icon="sap-icon://message-warning" iconColor="Critical" count="{appView>/storage}" text="{i18n>storage}"/>
+					<IconTabFilter key="outOfStock" icon="sap-icon://message-error" iconColor="Negative" count="{appView>/outOfStock}" text="{i18n>outOfStock}"/>
+				</items>
+				<content>
+					<Table updateFinished="onTableUpdateFinished"   id="productsTable" inset="false" popinLayout="GridSmall" sticky="HeaderToolbar,ColumnHeaders" items="{
+										path: 'odata>rel_Products',
+										sorter: {
+											path: 'Name'
+										}
+									}" class="sapFDynamicPageAlignContent" width="auto">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="{i18n>tableProducts}"/>
+								<ToolbarSpacer/>
+								<SearchField id="searchField" search="onProductSearch" width="auto">
+								</SearchField>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column>
+								<Text text="{i18n>name}"/>
+							</Column>
+							<Column hAlign="End" minScreenWidth="tablet" demandPopin="true">
+								<Text text="{i18n>price}" />
+							</Column>
+							<Column minScreenWidth="tablet">
+								<Text text="{i18n>specs}" />
+							</Column>
+							<Column minScreenWidth="tablet">
+								<Text text="{i18n>supplierInfo}" />
+							</Column>
+							<Column minScreenWidth="tablet" demandPopin="true">
+								<Text text="{i18n>madeIn}" />
+							</Column>
+							<Column minScreenWidth="tablet" demandPopin="true">
+								<Text text="{i18n>prodCompany}" />
+							</Column>
+							<Column width="100px" minScreenWidth="tablet" demandPopin="true">
+								<Text text="{i18n>rating}" />
+							</Column>
+							<Column width="30px">
+							</Column>
+							<Column width="30px">
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Navigation" press="onProductItemPress">
+								<cells>
+									<ObjectIdentifier title="{odata>Name}" />
+									<ObjectNumber number="{odata>Price}" unit="USD" />
+									<Text text="{odata>Specs}" wrapping="false"/>
+									<Text text="{odata>SupplierInfo}" wrapping="false"/>
+									<Text text="{odata>MadeIn}" wrapping="false"/>
+									<Text text="{odata>ProductionCompanyName}" wrapping="false"/>
+									<RatingIndicator maxValue="5" value="{odata>Rating}" />
+									<Button icon="sap-icon://edit" type="Transparent" press="onEditProductPress" />
+									<Button icon="sap-icon://sys-cancel" type="Transparent" press="onDeleteProductPress"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+
+			</IconTabBar>
+
+		</f:content>
+
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://add" text="{i18n>create}" press="onCreateProductPress"/>
+				<Button type="Reject" icon="sap-icon://delete" press="onDeleteStorePress" text="{i18n>delete}"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

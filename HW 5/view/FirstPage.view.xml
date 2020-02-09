@@ -1,0 +1,50 @@
+<mvc:View controllerName="my.app.controller.FirstPage" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:f="sap.f" 
+	xmlns:l="sap.ui.layout">
+	<f:DynamicPage id="dynamicPage" class="sapUiNoContentPadding" showFooter="true">
+
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:breadcrumbs>
+					<Breadcrumbs >
+						<Link press="onPress" text="Products"/>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+				<f:heading>
+					<Title text="Stores" wrapping="true"/>
+				</f:heading>
+				<f:content>
+				</f:content>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<Toolbar style="Clear">
+					<SearchField width="100%" showRefreshButton="true"/>
+				</Toolbar>
+			</f:DynamicPageHeader>
+		</f:header>
+
+		<f:content>
+			<List items="{odata>/Stores}">
+				<items>
+					<ObjectListItem title="{odata>Name}" type="Active" press="onListItemPress" number="{odata>FloorArea}" numberUnit="sq.m.">
+						<attributes>
+							<ObjectAttribute text="{odata>Address}" />
+						</attributes>
+					</ObjectListItem>
+				</items>
+			</List>
+		</f:content>
+
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://add" text="Create"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

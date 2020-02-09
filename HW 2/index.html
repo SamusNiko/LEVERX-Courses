@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/media.css" />
+    <link rel="stylesheet" href="fonts/css/all.css" />
+    <title>Home Work 2</title>
+  </head>
+
+  <body>
+    <dialog id="create-store-popup" class="popup">
+      <div class="popup-name">
+        Create new store
+      </div>
+      <form method="dialog" id="store-form" name="storeform">
+        <section>
+          <label for="create-store-popup">Name:</label>
+          <input type="text" name="Name" placeholder="Enter name" required />
+          <label for="create-store-popup">Email:</label>
+          <input type="email" name="Email" placeholder="Enter email" required />
+          <label for="create-store-popup">Phone number:</label>
+          <input
+            type="text"
+            name="PhoneNumber"
+            placeholder="Enter phone number"
+            required
+          />
+          <label for="create-store-popup">Address:</label>
+          <input
+            type="text"
+            name="Address"
+            placeholder="Enter address"
+            required
+          />
+          <label for="create-store-popup">Established date:</label>
+          <input
+            type="date"
+            name="Date"
+            placeholder="Enter established date"
+            required
+          />
+          <label for="create-store-popup">Floor area:</label>
+          <input
+            type="number"
+            name="FloorArea"
+            placeholder="Enter floor area"
+            required
+          />
+        </section>
+        <menu>
+          <button class="popup-create-btn" type="reset">Create</button>
+          <button class="popup-cancel-btn" type="reset">Cancel</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <dialog id="create-product-popup" class="popup">
+      <div class="popup-name">
+        Create new product
+      </div>
+      <form method="dialog">
+        <section>
+          <label for="create-product-popup">Name:</label>
+          <input type="text" name="Name" placeholder="Enter name" required />
+          <label for="create-product-popup">Price:</label>
+          <input
+            type="number"
+            name="Price"
+            placeholder="Enter price"
+            required
+          />
+          <label for="create-product-popup">Specs:</label>
+          <textarea
+            type="text"
+            name="Specs"
+            placeholder="Enter product specs"
+            required
+          ></textarea>
+          <label for="create-product-popup">Rating:</label>
+          <input
+            type="number"
+            name="Rating"
+            placeholder="Enter rating 1...5"
+            required
+          />
+          <label for="create-product-popup">Suplplier Info:</label>
+          <textarea
+            type="text"
+            name="SupplierInfo"
+            placeholder="Enter suplplier info"
+            required
+          ></textarea>
+          <label for="create-product-popup">Made in:</label>
+          <input
+            type="text"
+            name="MadeIn"
+            placeholder="Enter origin country"
+            required
+          />
+          <label for="create-product-popup">Production company name:</label>
+          <input
+            type="text"
+            name="ProductionCompanyName"
+            placeholder="Enter manufacturer name"
+            required
+          />
+          <label for="create-product-popup">Status:</label>
+          <select name="Status" required>
+            <option value="" selected disabled class="option-hidden"
+              >Enter status</option
+            >
+            <option value="OK">
+              Ok
+            </option>
+            <option value="STORAGE">
+              Storage
+            </option>
+            <option value="OUT_OF_STOCK">
+              Out of stock
+            </option>
+          </select>
+        </section>
+        <menu>
+          <button class="popup-create-btn" type="reset">Create</button>
+          <button class="popup-cancel-btn" type="reset">Cancel</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <div class="main-container flex-container">
+      <section class="stores">
+        <div class="sticky-header">
+          <h2>Stores List</h2>
+        </div>
+        <div class="stores-search search">
+          <input type="search" placeholder="Search" />
+          <button class="search-button"><i class="fas fa-search"></i></button>
+          <button class="redo-button"><i class="fas fa-redo"></i></button>
+        </div>
+        <div class="header-visibility-bar">
+          <button type="button" class="collapse-button">
+            <i class="fas fa-chevron-up"></i>
+          </button>
+          <button type="button" class="pin-button">
+            <i class="fas fa-thumbtack"></i>
+          </button>
+        </div>
+
+        <ul class="stores-list"></ul>
+
+        <footer>
+          <button class="store-create">
+            <i class="fas fa-plus"></i> Create
+          </button>
+        </footer>
+      </section>
+
+      <section class="details">
+        <div class="details-header-store-not-selected">
+          <p>Store is not selected</p>
+        </div>
+        <div class="store-not-selected">
+          <i class="fas fa-store-alt"></i>
+          <h2>Store is not selected</h2>
+          <p>Please select the store to proceed</p>
+        </div>
+      </section>
+    </div>
+
+    <template id="template-default-details-page">
+        <div class="details-header-store-not-selected">
+            <p>Store is not selected</p>
+          </div>
+          <div class="store-not-selected">
+            <i class="fas fa-store-alt"></i>
+            <h2>Store is not selected</h2>
+            <p>Please select the store to proceed</p>
+          </div>
+        </section>
+    </template>
+
+    <template id="template-list-item">
+      <li class="list-item">
+        <div>
+          <span class="list-item-name"></span>
+          <span class="list-item-address"></span>
+        </div>
+        <div class="list-item-area">
+          <span></span>
+          sq. m.
+        </div>
+      </li>
+    </template>
+
+    <template id="template-details-contacts">
+      <div class="details-header sticky-header">
+        <h2>Store Details</h2>
+      </div>
+      <div class="details-contacts">
+        <div>
+          <div class="contacts-email">
+            <b>Email: </b>
+            <p></p>
+          </div>
+          <div class="contacts-phone">
+            <b>Phone Number: </b>
+            <p></p>
+          </div>
+          <div class="contacts-address">
+            <b>Address: </b>
+            <p></p>
+          </div>
+        </div>
+        <div>
+          <div class="contacts-established">
+            <b>Established Date: </b>
+            <p></p>
+          </div>
+          <div class="contacts-area">
+            <b>Floor Area: </b>
+            <p></p>
+          </div>
+        </div>
+      </div>
+      <div class="header-visibility-bar">
+        <div>
+          <button type="button" class="collapse-button">
+            <i class="fas fa-chevron-up"></i>
+          </button>
+          <button type="button" class="pin-button">
+            <i class="fas fa-thumbtack"></i>
+          </button>
+        </div>
+      </div>
+    </template>
+
+    <template id="template-filter-bar">
+      <div class="products-filter flex-container">
+        <div status="all" class="filter filter-all all">
+          <span></span>
+          All
+        </div>
+        <div status="ok" class="filter filter-ok">
+          <div class="filter-icon ok">
+            <i class="far fa-check-square"></i>
+          </div>
+          <span class="number-of-elements"></span>
+          <span>Ok</span>
+        </div>
+        <div status="storage" class="filter filter-storage">
+          <div class="filter-icon storage">
+            <i class="fas fa-exclamation-triangle"></i>
+          </div>
+          <span class="number-of-elements"></span>
+          <span>Storage</span>
+        </div>
+        <div status="out_of_stock" class=" filter filter-out-of-stock">
+          <div class="filter-icon out_of_stock">
+            <i class="fas fa-exclamation-circle"></i>
+          </div>
+          <span class="number-of-elements"></span>
+          <span>Out of stock</span>
+        </div>
+        <div class="products-search search">
+          <input type="search" placeholder="Search" />
+          <button class="search-button"><i class="fas fa-search"></i></button>
+          <button class="redo-button"><i class="fas fa-redo"></i></button>
+        </div>
+      </div>
+      <div class="products-table">
+        <table data-sort="sort_table">
+          <caption>
+              Products
+            </caption>
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <footer>
+          <button class="product-create-btn">
+            <i class="fas fa-plus"></i> Create
+          </button>
+          <button class="store-delete-btn">
+            <i class="fas fa-trash-alt"></i> Delete
+          </button>
+        </footer>
+        </div>
+    </template>
+
+    <template class="template-table-legend">
+          <tr class="tb-legend">
+            <th>Name <button></button></th>
+            <th class="tb-price">Price<button></button></th>
+            <th>Specs<button></th>
+            <th>SupplierInfo<button></th>
+            <th>Country of origin<button></button></th>
+            <th>Prod. company<button></button></th>
+            <th>Rating<button></button></th>
+            <th></th>
+          </tr>
+    </template>
+
+    <template class="template-table-row">
+      <tr class="table-row" prodid="">
+        <td class="tb-name">
+          <b></b>
+        </td>
+        <td class="tb-price"><b></b>USD</td>
+        <td class="tb-specs td-ellipsis"></td>
+        <td class="tb-supplier-info	td-ellipsis"></td>
+        <td class="tb-country"></td>
+        <td class="tb-prod-company td-ellipsis"></td>
+        <td class="tb-rating"></td>
+        <td>
+          <div class="flex-container">
+            <button type="button" class="delete-products-btn">
+            <i class="far fa-times-circle"></i>
+          </button>
+          <button type="button">
+            <i class="fas fa-chevron-right"></i>
+          </button></div></div>
+        </td>
+        </tr></template>
+  </body>
+
+  <!-- <script type="text/javascript" src="data.js"></script> -->
+  <script type="text/javascript" src="index.js"></script>
+</html>

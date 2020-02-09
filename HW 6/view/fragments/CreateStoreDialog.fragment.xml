@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" 
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:core="sap.ui.core">
+    <Dialog title="Create new store" afterClose="onAfterClose">
+        <f:SimpleForm id="createStoreForm" maxContainerCols="1" layout="ResponsiveGridLayout" labelSpanL="12" labelSpanM="12" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1">
+            <f:content>
+                <Label text="Name"/>
+                <Input id="createStoreName" placeholder="Enter name" />
+
+                <Label text="Email"/>
+                <Input  id="createStoreEmail" placeholder="Enter email"/>
+
+                <Label text="Phone Number"/>
+                <Input id="createStorePhone" placeholder="Enter phone number"/>
+
+                <Label text="Address"/>
+                <Input id="createStoreAddress" placeholder="Enter address"/>
+
+                <Label text="simple DatePicker" />
+                <DatePicker  id="createStoreDate" placeholder="Enter Date ..." class="sapUiSmallMarginBottom"/>
+
+                <Label text="Floor Area"/>
+                <Input id="createStoreArea" placeholder="Enter floor area"/>
+            </f:content>
+        </f:SimpleForm>
+
+        <buttons>
+            <Button text="Submit" press="onSubmitCreateStorePress" />
+            <Button text="Cancel" press="onCancelPress" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

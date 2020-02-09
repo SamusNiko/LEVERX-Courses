@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m" 
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:core="sap.ui.core">
+    <Dialog title="Create new product" afterClose="onAfterClose">
+        <f:SimpleForm id="createProductForm" maxContainerCols="1" layout="ResponsiveGridLayout" labelSpanL="12" labelSpanM="12" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1">
+            <f:content>
+                <Label text="Name"/>
+                <Input id="createProductName" placeholder="Enter name" />
+
+                <Label text="Price"/>
+                <Input id="createProductPrice" placeholder="Enter price"/>
+
+                <Label text="Specs"/>
+                <TextArea id="createProductSpecs" value="" rows="3" placeholder="Enter product specs"/>
+
+                <Label text="Rating"/>
+                <Input id="createProductRating" placeholder="Enter rating"/>
+
+                <Label text="Supplier Info"/>
+                <TextArea id="createProductSupplierInfo" value="" rows="3" placeholder="Enter supplier info"/>
+
+                <Label text="Made In"/>
+                <Input id="createProductMadeIn" placeholder="Enter origin country"/>
+
+                <Label text="Production company name"/>
+                <Input id="creatProductCompany" placeholder="Enter manufacturer name"/>
+
+                <Label text="Status"/>
+                <Select id="createProductStatus">
+                    <core:Item text="Ok" key="OK"></core:Item>
+                    <core:Item text="Out of stock" key="OUT_OF_STOCK"></core:Item>
+                    <core:Item text="Storage" key="STORAGE"></core:Item>
+                </Select>
+            </f:content>
+        </f:SimpleForm>
+
+        <buttons>
+            <Button text="Submit" press="onSubmitPress" />
+            <Button text="Cancel" press="onCancelPress" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

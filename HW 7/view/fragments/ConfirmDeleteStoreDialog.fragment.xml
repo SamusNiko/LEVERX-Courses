@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" 
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:core="sap.ui.core">
+    <Dialog title="{i18n>deleteStore}" afterClose="onAfterClose">
+        <Label class="sapUiSmallMargin" text="{i18n>deleteStoreConfirm}"/>
+        <buttons>
+            <Button text="{i18n>submit}" press="onSubmitDeleteStore" />
+            <Button text="{i18n>close}" press="onCancelPress" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

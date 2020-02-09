@@ -1,0 +1,13 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	controllerName="my.app.controller.SecondPage">
+
+	<Page title="Second page">
+		<content>
+			<Button text="First page" press="onFirstButtonPress" />
+            <Button text="Third page" press="onThirdPageButtonPress" />
+		</content>
+	</Page>
+
+</mvc:View>

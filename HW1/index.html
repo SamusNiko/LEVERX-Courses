@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/media.css" />
+    <link rel="stylesheet" href="fonts/css/all.css" />
+    <title>Home Work 1</title>
+  </head>
+
+  <body>
+    <div class="main-container flex-container">
+      <section class="stores">
+        <div class="sticky-header">
+          <h2>Stores List</h2>
+        </div>
+        <div class="stores-search search">
+          <input type="search" placeholder="Search" />
+          <button class="search-button"><i class="fas fa-search"></i></button>
+          <button class="redo-button"><i class="fas fa-redo"></i></button>
+        </div>
+        <div class="header-visibility-bar">
+          <button type="button" class="collapse-button">
+            <i class="fas fa-chevron-up"></i>
+          </button>
+          <button type="button" class="pin-button">
+            <i class="fas fa-thumbtack"></i>
+          </button>
+        </div>
+
+        <ul class="stores-list"></ul>
+
+        <footer>
+          <button class="store-create">
+            <i class="fas fa-plus"></i> Create
+          </button>
+        </footer>
+      </section>
+
+      <section class="details">
+        <div class="details-header-store-not-selected">
+          <p>Store is not selected</p>
+        </div>
+        <div class="store-not-selected">
+          <i class="fas fa-store-alt"></i>
+          <h2>Store is not selected</h2>
+          <p>Please select the store to proceed</p>
+        </div>
+      </section>
+    </div>
+
+    <template id="template-list-item">
+      <li class="list-item">
+        <div>
+          <span class="list-item-name"></span>
+          <span class="list-item-address"></span>
+        </div>
+        <div class="list-item-area">
+          <span></span>
+          sq. m.
+        </div>
+      </li>
+    </template>
+
+    <template id="template-details-contacts">
+      <div class="details-header sticky-header">
+        <h2>Store Details</h2>
+      </div>
+      <div class="details-contacts">
+        <div>
+          <div class="contacts-email">
+            <b>Email: </b>
+            <p></p>
+          </div>
+          <div class="contacts-phone">
+            <b>Phone Number: </b>
+            <p></p>
+          </div>
+          <div class="contacts-address">
+            <b>Address: </b>
+            <p></p>
+          </div>
+        </div>
+        <div>
+          <div class="contacts-established">
+            <b>Established Date: </b>
+            <p></p>
+          </div>
+          <div class="contacts-area">
+            <b>Floor Area: </b>
+            <p></p>
+          </div>
+        </div>
+      </div>
+      <div class="header-visibility-bar">
+        <div>
+          <button type="button" class="collapse-button">
+            <i class="fas fa-chevron-up"></i>
+          </button>
+          <button type="button" class="pin-button">
+            <i class="fas fa-thumbtack"></i>
+          </button>
+        </div>
+      </div>
+    </template>
+
+    <template id="template-filter-bar">
+      <div class="products-filter flex-container">
+        <div class="filter filter-all">
+          <span></span>
+          All
+        </div>
+        <div class="filter filter-ok">
+          <div class="filter-icon ok">
+            <i class="far fa-check-square"></i>
+          </div>
+          <span class="number-of-elements"></span>
+          <span>Ok</span>
+        </div>
+        <div class=" filter filter-storage">
+          <div class="filter-icon warning">
+            <i class="fas fa-exclamation-triangle"></i>
+          </div>
+          <span class="number-of-elements"></span>
+          <span>Storage</span>
+        </div>
+        <div class=" filter filter-out-of-stock">
+          <div class="filter-icon error">
+            <i class="fas fa-exclamation-circle"></i>
+          </div>
+          <span class="number-of-elements"></span>
+          <span>Out of stock</span>
+        </div>
+        <div class="products-search search">
+          <input type="search" placeholder="Search" />
+          <button class="search-button"><i class="fas fa-search"></i></button>
+          <button class="redo-button"><i class="fas fa-redo"></i></button>
+        </div>
+      </div>
+    </template>
+
+    <template class="template-table-frame">
+      <div class="products-table">
+        <table>
+          <caption>
+            Products
+          </caption>
+          <tr class="tb-legend">
+            <th>Name</th>
+            <th class="tb-price">Price</th>
+            <th>Specs</th>
+            <th>SupplierInfo</th>
+            <th>Country of origin</th>
+            <th>Prod. company</th>
+            <th>Rating</th>
+            <th></th>
+          </tr>
+        </table>
+      </div>
+      <footer>
+        <button class="product-create">
+          <i class="fas fa-plus"></i> Create
+        </button>
+        <button class="product-delete">
+          <i class="fas fa-trash-alt"></i> Delete
+        </button>
+      </footer>
+    </template>
+
+    <template class="template-table-row">
+      <tr class="table-row">
+        <td class="tb-name">
+          <b></b>
+        </td>
+        <td class="tb-price"><b></b>USD</td>
+        <td class="tb-specs td-ellipsis"></td>
+        <td class="tb-supplier-info	td-ellipsis"></td>
+        <td class="tb-country"></td>
+        <td class="tb-prod-company td-ellipsis"></td>
+        <td class="tb-rating"></td>
+        <td>
+          <button type="button">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </td></tr
+    ></template>
+  </body>
+
+  <script type="text/javascript" src="data.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+</html>

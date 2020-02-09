@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m" 
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:core="sap.ui.core">
+    <Dialog title="{i18n>createProduct}" afterClose="onAfterClose">
+        <f:SimpleForm id="createProductForm" maxContainerCols="1" layout="ResponsiveGridLayout" labelSpanL="12" labelSpanM="12" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1">
+            <f:content>
+                <Label text="{i18n>name}"/>
+                <Input id="createProductName" required="true" placeholder="{i18n>enterName}" />
+
+                <Label text="{i18n>price}"/>
+                <Input id="createProductPrice" required="true" placeholder="{i18n>enterPrice}"/>
+
+                <Label text="{i18n>specs}"/>
+                <TextArea id="createProductSpecs" required="true" rows="3" placeholder="{i18n>enterSpecs}"/>
+
+                <Label text="{i18n>rating}"/>
+                <Input id="createProductRating" required="true" placeholder="{i18n>enterRating}"/>
+
+                <Label text="{i18n>supplierInfo}"/>
+                <TextArea id="createProductSupplierInfo" required="true" rows="3" placeholder="{i18n>enterSupplierInfo}"/>
+
+                <Label text="{i18n>madeIn}"/>
+                <Input id="createProductMadeIn" required="true" placeholder="{i18n>enterMadeIn}"/>
+
+                <Label text="{i18n>prodCompany}"/>
+                <Input id="creatProductCompany" required="true" placeholder="{i18n>enterProdCompany}"/>
+
+                <Label text="{i18n>status}" required="true"/>
+                <Select id="createProductStatus">
+                    <core:Item text="{i18n>ok}" key="OK"></core:Item>
+                    <core:Item text="{i18n>storage}" key="OUT_OF_STOCK"></core:Item>
+                    <core:Item text="{i18n>outOfStock}" key="STORAGE"></core:Item>
+                </Select>
+            </f:content>
+        </f:SimpleForm>
+
+        <buttons>
+            <Button text="{i18n>submit}" press="onSubmitEditProduct" />
+            <Button text="{i18n>close}" press="onCancelPress" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

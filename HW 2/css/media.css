@@ -1,0 +1,8 @@
+@media only screen and (max-width: 880px) {
+  .stores {
+    display: none;
+  }
+  .details-contacts {
+    height: auto;
+  }
+}

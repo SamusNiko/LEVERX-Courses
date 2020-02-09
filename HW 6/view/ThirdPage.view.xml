@@ -1,0 +1,87 @@
+<mvc:View controllerName="my.app.controller.ThirdPage" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:form="sap.ui.layout.form" 
+	xmlns:f="sap.f" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout">
+	<f:DynamicPage id="dynamicPage" class="sapUiNoContentPadding" showFooter="true">
+
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:breadcrumbs>
+					<Breadcrumbs>
+						<Link press="onNavLinkPress" target="2" text="Stores list "/>
+						<Link press="onNavLinkPress" target="1" text="Store details"/>
+						<Link press="onNavLinkPress" text="Product details"/>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+
+				<f:heading>
+					<Title text="Product details ({odata>Name})"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<f:header>
+
+			<f:DynamicPageHeader pinnable="true">
+
+				<l:HorizontalLayout allowWrapping="true">
+					<l:VerticalLayout class="sapUiMediumMarginEnd">
+						<ObjectStatus title="Price" text="{odata>Price} USD"/>
+						<ObjectStatus title="Rating" text="{odata>Rating}"/>
+					</l:VerticalLayout>
+
+					<l:VerticalLayout class="sapUiMediumMarginEnd">
+						<ObjectStatus title="Established Date" text="{path: 'odata>Established', 
+							type: 'sap.ui.model.type.Date',
+							formatOptions: {
+									style: 'medium'
+					}}"/>
+						<ObjectStatus title="MadeIn" text="{odata>MadeIn} "/>
+					</l:VerticalLayout>
+
+					<l:VerticalLayout class="sapUiMediumMarginEnd">
+						<ObjectStatus title="ProductionCompanyName" text="{odata>ProductionCompanyName}"/>
+						<ObjectStatus id="productStatus" title="Status" inverted="true" text="{odata>Status}"/>
+					</l:VerticalLayout>
+				</l:HorizontalLayout>
+
+				<l:HorizontalLayout allowWrapping="true" class="sapUiTinyMarginTop">
+					<l:VerticalLayout class="sapUiMediumMarginEnd">
+						<ObjectStatus title="Specs" text="{odata>Specs}"/>
+						<ObjectStatus title="SupplierIndo" text="{odata>SupplierInfo}"/>
+					</l:VerticalLayout>
+				</l:HorizontalLayout>
+
+			</f:DynamicPageHeader>
+
+		</f:header>
+
+		<f:content>
+			<VBox>
+
+				<form:SimpleForm editable="true" layout="ColumnLayout" class="sapUiNoContentPadding">
+					<form:content>
+						<Label text="Author name" />
+						<Input id="authorOfComment" value="" />
+
+						<Label text="Rating" />
+						<RatingIndicator id="inputRating" maxValue="5" value="0" editable="true" />
+
+					</form:content>
+				</form:SimpleForm>
+
+				<FeedInput id="textOfComment" post="onPoster" />
+				<List showSeparators="Inner" items="{appView>/ProductComments}">
+					<FeedListItem sender="{appView>Author}" senderPress="onSenderPress" iconDensityAware="false" info="Rating {appView>Rating}" timestamp="{appView>Posted}" text="{appView>Message}" convertLinksToAnchorTags="All"/>
+				</List>
+			</VBox>
+		</f:content>
+
+		<f:footer>
+
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>
